@@ -8,6 +8,7 @@ A proof-of-concept implementation of a set for Node.js.
 import { SimpleSet } from "simple_set";
 
 const s = new SimpleSet([1, 3, 4]);
+s.length; // 3
 s.add(6); // SimpleSet { 1, 3, 4, 6 }
 s.remove(6); // SimpleSet { 1, 3, 4 }
 s.toArray(); // [ 1, 3, 4 ]
