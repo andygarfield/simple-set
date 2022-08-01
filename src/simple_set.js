@@ -54,12 +54,7 @@ export class SimpleSet {
 
   intersect(otherSet) {
     return new this.constructor(
-      this.toArray().reduce((arr, item) => {
-        if (otherSet.has(item)) {
-          arr.push(item);
-        }
-        return arr;
-      }, [])
+      this.toArray().filter((item) => otherSet.has(item))
     );
   }
 
