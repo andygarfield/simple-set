@@ -1,0 +1,14 @@
+{
+  "name": "simple_set",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "test":"mocha"
+  },
+  "author": "Andy Garfield",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
