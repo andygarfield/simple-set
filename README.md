@@ -5,7 +5,7 @@ A proof-of-concept implementation of a set for Node.js.
 ## Usage
 
 ```javascript
-import { SimpleSet } from "simple_set";
+import { SimpleSet } from "simple-set";
 
 const s = new SimpleSet([1, 3, 4]);
 s.length; // 3
