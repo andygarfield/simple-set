@@ -1,5 +1,5 @@
 {
-  "name": "simple_set",
+  "name": "simple-set",
   "version": "1.0.0",
   "main": "src/simple_set.js",
   "type": "module",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andygarfield/simple_set.git",
+    "url": "https://github.com/andygarfield/simple-set.git",
     "directory": "src"
   }
 }
