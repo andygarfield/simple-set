@@ -4,7 +4,7 @@ import { SimpleSet } from "../src/simple_set.js";
 describe("SimpleSet", () => {
   describe("toArray", () => {
     it("should return nothing when set is empty", () => {
-      const s = new SimpleSet([]);
+      const s = new SimpleSet();
       assert.deepEqual(s.toArray(), []);
       assert.equal(s.length, 0);
     });
