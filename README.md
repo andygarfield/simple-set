@@ -21,4 +21,9 @@ const s2 = new SimpleSet([2, 3, 6]);
 s1.union(s2); // SimpleSet { 1, foo, 2, 4, 3, 6 }
 s1.intersect(s2); // SimpleSet { 2, 3 }
 s1.minus(s2); // SimpleSet { 1, foo, 4 }
+
+// and it's also an iterator
+for (let item of s1) {
+    console.log(item);
+}
 ```
