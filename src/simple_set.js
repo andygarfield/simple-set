@@ -2,12 +2,16 @@ import { inspect } from "util";
 
 /**
     * A proof-of-concept set implemented in JavaScript.
-    * @template [T=object]
+    * @template [T=any]
  */
 export class SimpleSet {
     #values = new Map();
     length = 0;
 
+    /**
+        * Create a new instance of SimpleSet
+        * @param {T[]} arr - The array to base the set off of.
+    */
     constructor(arr = []) {
         arr.forEach((item) => {
             this.add(item);
