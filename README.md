@@ -2,6 +2,11 @@
 
 A proof-of-concept implementation of a set for Node.js.
 
+## Installation
+```
+npm install https://github.com/andygarfield/simple-set
+```
+
 ## Usage
 
 ```javascript
