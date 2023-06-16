@@ -1,78 +1,123 @@
 import { inspect } from "util";
 
+/**
+    * A proof-of-concept set implemented in JavaScript.
+    * @template [T=object]
+ */
 export class SimpleSet {
-  #values = new Map();
-  length = 0;
+    #values = new Map();
+    length = 0;
 
-  constructor(arr = []) {
-    arr.forEach((item) => {
-      this.add(item);
-    });
-  }
-
-  toArray() {
-    return Array.from(this.#values.keys());
-  }
-
-  has(item) {
-    return this.#values.has(item);
-  }
-
-  add(item) {
-    if (!this.has(item)) {
-      this.#values.set(item, null);
-      this.length++;
-    }
-    return this;
-  }
-
-  remove(item) {
-    if (this.has(item)) {
-      this.#values.delete(item);
-      this.length--;
-    }
-    return this;
-  }
-
-  equals(otherSet) {
-    if (otherSet.length !== this.length) {
-      return false;
+    constructor(arr = []) {
+        arr.forEach((item) => {
+            this.add(item);
+        });
     }
 
-    for (const item of this.toArray()) {
-      if (!otherSet.has(item)) {
-        return false;
-      }
+    /**
+        * Convert the set to an array.
+        * @return {T[]} A Point object.
+     */
+    toArray() {
+        return Array.from(this.#values.keys());
+    }
+    
+    /**
+        * Check whether the set contains an item.
+        * @param {T} item - The item to check.
+        * @returns {bool} Whether the item is in the set.
+     */
+    has(item) {
+        return this.#values.has(item);
     }
 
-    return true;
-  }
+    /**
+        * Add an item to the set.
+        * @param {T} item - The item to add.
+    */
+    add(item) {
+        if (!this.has(item)) {
+            this.#values.set(item, null);
+            this.length++;
+        }
+        return this;
+    }
 
-  union(otherSet) {
-    return new this.constructor([...this.toArray(), ...otherSet.toArray()]);
-  }
+    /**
+        * Remove an item from the set.
+        * @param {T} item - The item to remove.
+    */
+    remove(item) {
+        if (this.has(item)) {
+            this.#values.delete(item);
+            this.length--;
+        }
+        return this;
+    }
 
-  intersect(otherSet) {
-    return new this.constructor(
-      this.toArray().filter((item) => otherSet.has(item))
-    );
-  }
+    /**
+        * Whether the set contains the same items as another set.
+        * @param {this} otherSet - The set to compare against.
+        * @returns {bool} Whether the sets are equivalent.
+    */
+    equals(otherSet) {
+        if (otherSet.length !== this.length) {
+            return false;
+        }
 
-  minus(otherSet) {
-    return new this.constructor(
-      this.toArray().filter((item) => !otherSet.has(item))
-    );
-  }
+        for (const item of this.toArray()) {
+            if (!otherSet.has(item)) {
+                return false;
+            }
+        }
 
-  [inspect.custom](depth, opts) {
-    return this.toString();
-  }
+        return true;
+    }
 
-  toString() {
-    const str = this.toArray()
-      .map((item) => String(item))
-      .join(", ");
+    /**
+        * Create a new set which combines the current set with another.
+        * @param {this} otherSet - The set to combine the current set with.
+        * @returns {this} The unioned set.
+    */
+    union(otherSet) {
+        return new this.constructor([...this.toArray(), ...otherSet.toArray()]);
+    }
 
-    return `SimpleSet { ${str} }`;
-  }
+    /**
+        * Create a new set which contains the common items of this set and another.
+        * @param {this} otherSet - The set to intersect with.
+        * @returns {this} The intersected set.
+    */
+    intersect(otherSet) {
+        return new this.constructor(
+            this.toArray().filter((item) => otherSet.has(item))
+        );
+    }
+
+    /**
+        * Create a new set which doesn't contain the items from another set.
+        * @param {this} otherSet - The set to subtract from the current set.
+        * @returns {this} The new set
+    */
+    minus(otherSet) {
+        return new this.constructor(
+            this.toArray().filter((item) => !otherSet.has(item))
+        );
+    }
+
+    [inspect.custom](depth, opts) {
+        return this.toString();
+    }
+
+    /**
+        * Create a string representation of the set.
+        * @returns {string} The string representation.
+    */
+    toString() {
+        const str = this.toArray()
+            .map((item) => String(item))
+            .join(", ");
+
+        return `SimpleSet { ${str} }`;
+    }
 }
